@@ -64,9 +64,8 @@ Specify the project's license (e.g., MIT, Apache).
 Mention any resources, libraries, or tutorials related to the HIC framework that you used.
 
 ## Contact
-
-Provide your contact information or a way for users to reach out to you for questions, feedback, or support.
-
+krishan kant 
+contact information or a way for users to reach out to you for questions, feedback, or support.
 ---
 
 Customize this template based on your project's specifics, and feel free to add more sections as needed. Including clear instructions for setting up the HIC framework, integrating it into the game, and providing examples will help users understand how your Gesture-Controlled Game project works with HIC.
