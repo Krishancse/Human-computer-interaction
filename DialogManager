@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class DialogManager {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Hello! How can I assist you today?");
+        while (true) {
+            String userInput = scanner.nextLine();
+            String response = handleUserInput(userInput);
+            System.out.println(response);
+        }
+    }
+
+    private static String handleUserInput(String userInput) {
+        // Implement logic to determine the appropriate response based on user input
+        // You might use conditionals, NLP, or other techniques to understand user intent
+        
+        // Example:
+        if (userInput.equalsIgnoreCase("hi")) {
+            return "Hi there! How can I help you?";
+        } else if (userInput.contains("weather")) {
+            return "The weather today is sunny.";
+        } else {
+            return "I'm sorry, I didn't understand your request.";
+        }
+    }
+}
