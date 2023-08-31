@@ -1,0 +1,203 @@
+basic framework only using java 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class WearableInteractionSystem extends JFrame {
+    private JTextArea notificationArea;
+
+    public WearableInteractionSystem() {
+        setTitle("Wearable Interaction System");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        notificationArea = new JTextArea();
+        notificationArea.setEditable(false);
+
+        JButton addButton = new JButton("Add Notification");
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addNotification("New notification received.");
+            }
+        });
+
+        JButton voiceButton = new JButton("Voice Command");
+        voiceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleVoiceCommand();
+            }
+        });
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.add(notificationArea);
+        mainPanel.add(addButton);
+        mainPanel.add(voiceButton);
+
+        add(mainPanel);
+        setVisible(true);
+    }
+
+    private void addNotification(String message) {
+        notificationArea.append(message + "\n");
+    }
+
+    private void handleVoiceCommand() {
+        String command = JOptionPane.showInputDialog(this, "Speak your command:");
+        if (command != null && !command.isEmpty()) {
+            addNotification("Voice command: " + command);
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new WearableInteractionSystem();
+            }
+        }
+    }
+}
+
+
+
+#Designing a Wearable Technology Interaction system using Java and Wear OS involves using Android Studio, Android's development environment. Here's a basic example of a Wear OS app that focuses on intuitive gestures, voice commands, and visual feedback. This example demonstrates how to handle taps and voice commands on a Wear OS smartwatch.
+
+1. Set up your Android Studio project and create a new Wear OS project.
+
+2. In the layout XML (`activity_main.xml`), design the UI with TextView for notifications and two buttons for gestures and voice commands:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/box_inset_layout_padding_bottom"
+    android:paddingLeft="@dimen/box_inset_layout_padding_left"
+    android:paddingRight="@dimen/box_inset_layout_padding_right"
+    android:paddingTop="@dimen/box_inset_layout_padding_top"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/notificationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Notifications"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/gestureButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Gesture"
+        app:layout_box="center"
+        app:layout_boxGravity="center" />
+
+    <Button
+        android:id="@+id/voiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="Voice Command"
+        app:layout_box="center"
+        app:layout_boxGravity="center" />
+
+</androidx.wear.widget.BoxInsetLayout>
+```
+
+3. In your `MainActivity.java`, handle gestures and voice commands:
+
+```java
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import androidx.wear.ambient.AmbientModeSupport;
+
+public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, AmbientModeSupport.AmbientCallbackProvider {
+
+    private TextView notificationTextView;
+    private GestureDetector gestureDetector;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        notificationTextView = findViewById(R.id.notificationTextView);
+        Button gestureButton = findViewById(R.id.gestureButton);
+        Button voiceButton = findViewById(R.id.voiceButton);
+
+        gestureDetector = new GestureDetector(this, this);
+
+        gestureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNotification("Gesture button clicked");
+            }
+        });
+
+        voiceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleVoiceCommand();
+            }
+        });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        gestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public void onGesture(GestureDetector gestureDetector) {
+        addNotification("Gesture detected");
+    }
+
+    @Override
+    public void onAmbientModeChanged(boolean inAmbientMode) {
+        // Handle ambient mode changes if needed
+    }
+
+    @Override
+    public AmbientModeSupport.AmbientCallback getAmbientCallback() {
+        return new AmbientModeSupport.AmbientCallback() {
+            @Override
+            public void onEnterAmbient(Bundle ambientDetails) {
+                super.onEnterAmbient(ambientDetails);
+                // Handle entering ambient mode
+            }
+
+            @Override
+            public void onExitAmbient() {
+                super.onExitAmbient();
+                // Handle exiting ambient mode
+            }
+        };
+    }
+
+    private void addNotification(String message) {
+        notificationTextView.setText(message);
+    }
+
+    private void handleVoiceCommand() {
+        addNotification("Voice command detected");
+    }
+}
+```
+
+This example provides a basic framework for a Wear OS app that handles gestures and voice commands.
+Remember that for a full-fledged app, you'll need to integrate with Wear OS APIs for more advanced features and user experience enhancements. 
+Also, make sure to handle user permissions and design considerations for the wearable form factor.
+
