@@ -1,0 +1,81 @@
+Build voice-enabled applications using Dialogflow for Google Home and Alexa Skills Kit for Amazon Echo
+From touchscreen and mouse-click, we are moving to voice- and conversation-based user interfaces. By adopting Voice User Interfaces (VUIs), you can create a more compelling and engaging experience for your users. Voice User Interface Projects teaches you how to develop voice-enabled applications for desktop, mobile, and Internet of Things (IoT) devices. This book explains in detail VUI and its importance, basic design principles of VUI, fundamentals of conversation, and the different voice-enabled applications available in the market. You will learn how to build your first voice-enabled application by utilizing DialogFlow and Alexa’s natural language processing (NLP) platform. Once you are comfortable with building voice-enabled applications, you will understand how to dynamically process and respond to the questions by using NodeJS server deployed to the cloud. You will then move on to securing NodeJS RESTful API for DialogFlow and Alexa webhooks, creating unit tests and building voice-enabled podcasts for cars. Last but not the least you will discover advanced topics such as handling sessions, creating custom intents, and extending built-in intents in order to build conversational VUIs that will help engage the users.
+
+This book covers the following exciting features:
+
+Understand NLP platforms with machine learning
+Exploit best practices and user experiences in creating VUI
+Build voice-enabled chatbots
+Host, secure, and test in a cloud platform
+Create voice-enabled applications for personal digital assistant devices
+Instructions and Navigations
+All of the code is organized into folders. For example, Chapter02.
+The code will look like the following:
+var request, response;
+exports.dialogflowFirebaseFulfillment = firebase.https.onRequest((req, res) => {
+  request = req;
+  response = res;  
+  console.log('Fortune Cookie Request headers: ' + JSON.stringify(request.headers));
+  console.log('Fortune Cookie Request body: ' + JSON.stringify(request.body));
+  if (request.body.queryResult) {
+    processV2Request();
+  } else {
+    console.log('Invalid Request');
+    return response.status(400).end('Invalid Webhook Request');
+  }
+});
+Following is what you need for this book: Copy and paste the Audience section from the EPIC.
+
+With the following software and hardware list you can run all code files present in the book (Chapter 1-10).
+
+Software and Hardware List
+Chapter	Software required	OS required
+4-10	Visual Studio, Node.js, Postman,	Windows, Mac OS X, and Linux (Any)
+Visual Studio Community	
+Related products
+Hands-On Chatbots and Conversational UI Development [Packt] [Amazon]
+Alexa Skills Projects [Packt] [Amazon]
+A Voice User Interface (VUI) is a technology that enables users to interact with computers, devices, or applications using spoken language. 
+Instead of traditional input methods like typing or clicking, users communicate with the system by speaking commands, questions, or requests. VUIs leverage speech recognition, natural language processing (NLP), and text-to-speech (TTS) technologies to understand user inputs and provide appropriate responses.
+VUIs are commonly used in various applications and devices, such as virtual assistants (e.g., Siri, Alexa, Google Assistant), smart speakers, phone systems, in-car infotainment systems, and more. 
+They aim to make technology interactions more intuitive and user-friendly by simulating human conversation patterns.
+The key components of a Voice User Interface include:
+1. **Speech Recognition:** This technology converts spoken language into text, allowing the system to understand user inputs.
+2. **Natural Language Processing (NLP):** NLP enables the system to comprehend the meaning behind the user's spoken commands or queries. It helps identify user intents, extract relevant information, and interpret context.
+3. **Dialog Management:** VUIs have a conversation flow that guides the interaction between the user and the system. Dialog management involves structuring the conversation, handling user inputs, and generating appropriate responses.
+4. **Text-to-Speech (TTS):** TTS technology converts text responses into spoken language, allowing the system to communicate with the user audibly.
+5. **Contextual Understanding:** Effective VUIs take into account the context of the conversation to provide more accurate and relevant responses. This may involve remembering previous interactions or understanding the user's current situation.
+6. **Error Handling:** VUIs need to handle cases when they don't understand the user's input or when the user provides incomplete or unclear information.
+7. **Personalization:** Some VUIs can learn and adapt to a user's preferences and behavior over time, providing a more tailored experience.
+8. **Security and Privacy:** VUIs must handle user data and sensitive information securely, ensuring that privacy concerns are addressed.
+Overall, a well-designed Voice User Interface offers users a natural and convenient way to interact with technology, particularly in scenarios where hands-free or visual interactions are challenging or not possible.
+When choosing a platform for building a Voice User Interface (VUI), you'll want to consider factors such as your project's requirements, the target audience, available features, ease of development, and integration options. Here are some popular platforms to consider:
+
+1. **Amazon Alexa:**
+   Amazon Alexa offers a robust ecosystem for building voice-driven applications. It provides tools, APIs, and documentation for creating skills that run on Alexa-enabled devices like Echo speakers and third-party devices. Alexa Skills Kit (ASK) provides APIs for speech recognition, NLP, and response generation.
+2. **Google Assistant:**
+   Google Assistant is another widely used platform for VUI development. The Google Assistant platform allows you to create Actions, which are voice-driven interactions that can be accessed on devices like Google Nest speakers and Android smartphones.
+3. **Microsoft Azure Cognitive Services:**
+   Azure Cognitive Services offers Speech services for speech recognition, text-to-speech conversion, and language understanding. It can be integrated into various applications and devices.
+4. **Custom Development:**
+   If you need more flexibility and control over your VUI, you can build a custom solution using libraries like SpeechRecognition for speech-to-text, natural language processing libraries like spaCy or NLTK, and text-to-speech engines like gTTS (Google Text-to-Speech) or Amazon Polly.
+5. **Dialogflow:**
+   Google's Dialogflow is a platform specifically designed for creating conversational agents. It provides tools for building chatbots and voice-based interactions. Dialogflow supports integration with multiple platforms, including Google Assistant and various messaging platforms.
+6. **Twilio Autopilot:**
+   Twilio Autopilot is a platform that enables you to build natural language understanding and conversation flows for voice and messaging applications. It's designed for creating complex voice interactions and can integrate with various communication channels.
+7. **IBM Watson Assistant:**
+   IBM Watson Assistant offers capabilities for creating chatbots and voice assistants. It provides tools for building natural language understanding models, defining dialog flows, and integrating with different platforms.
+8. **Open-Source Solutions:**
+   There are open-source frameworks and libraries available for building VUIs. For example, Mozilla DeepSpeech offers a speech-to-text engine, and Mycroft AI is an open-source voice assistant platform.
+
+When choosing a platform, consider the following factors:
+
+- **Features:** Does the platform offer the features you need, such as speech recognition, NLP, and integration options?
+- **Ease of Use:** Is the platform user-friendly and well-documented?
+- **Community and Support:** Does the platform have an active community and support resources?
+- **Scalability:** Can the platform handle the expected user load and scale as needed?
+- **Integration:** Can the VUI be integrated with the devices or applications you have in mind?
+- **Customization:** Does the platform allow you to customize the interaction flow and responses?
+- **Cost:** Consider any associated costs, such as usage fees or subscription plans.
+
+Ultimately, the choice of platform will depend on your project's specific requirements and your familiarity with the tools and technologies offered by each platform.
